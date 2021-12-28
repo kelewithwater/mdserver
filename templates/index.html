@@ -677,6 +677,7 @@ header, .context-menu, .megamenu-content, footer{
 <div id='write'  class=''><h1 id='flask笔记'><span>Flask笔记</span></h1><h2 id='基础项目的搭建'><span>{{a}}</span></h2><h1 id='flask笔记'><span>Flask笔记</span></h1><h1 id='flask笔记'><span>Flask笔记</span></h1></div>
 <img src="" alt="" id="img1">
 <div id="myDiv"><h1 id="">hello</h1></div>
+<div id="flask"><h1 id="">hello</h1></div>
 <script>
     function loadXMLDoc()
     {
@@ -695,8 +696,10 @@ header, .context-menu, .megamenu-content, footer{
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-        var myArr = JSON.parse("[" + this.responseText + "]");
-        myFunction(myArr)
+            var httpin="[" + this.responseText + "]"
+            alert(httpin)
+            var myArr = JSON.parse(httpin);
+            myFunction(myArr)
         }
     }
     xmlhttp.open("GET","/url",true);
@@ -713,6 +716,18 @@ header, .context-menu, .megamenu-content, footer{
     document.getElementById("myDiv").innerHTML=out;
     }
     loadXMLDoc()
+    function myFunction1(arr) {
+        var out = "";
+        var i;
+        for(i = 0; i < arr.length; i++) {
+            out += '<a href="' + arr[i].url + '">' + 
+            arr[i].title + '</a><br>';
+        }
+        document.getElementById("flask").innerHTML=out;
+    }
+    var flaski = "[" + '{{ a | safe }}' + "]"
+    var flaskin = JSON.parse(flaski)
+    myFunction1(flaskin)
 </script>
 </body>
 </html>

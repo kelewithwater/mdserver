@@ -8,7 +8,7 @@ app = Flask(__name__)
 def hello():
     with open('url.json', 'r', encoding = 'utf-8') as f:
         a = json.load(f)
-    return render_template('index.html')
+    return render_template('index.html',a = json.dumps(a))
 
 @app.route('/url')
 def url():
